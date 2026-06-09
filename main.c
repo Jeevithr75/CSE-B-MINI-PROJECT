@@ -71,3 +71,52 @@ int main() {
 
     return 0;
 }
+void drawLine(int x1, int y1, int x2, int y2)
+{
+    int i;
+
+    // Horizontal line
+    if(y1 == y2)
+    {
+        int start = (x1 < x2) ? x1 : x2;
+        int end = (x1 > x2) ? x1 : x2;
+
+        for(i = start; i <= end; i++)
+        {
+            canvas[y1][i] = '*';
+        }
+    }
+
+    // Vertical line
+    else if(x1 == x2)
+    {
+        int start = (y1 < y2) ? y1 : y2;
+        int end = (y1 > y2) ? y1 : y2;
+
+        for(i = start; i <= end; i++)
+        {
+            canvas[i][x1] = '*';
+        }
+    }
+
+    // Diagonal line
+    else
+    {
+        int dx = (x2 > x1) ? 1 : -1;
+        int dy = (y2 > y1) ? 1 : -1;
+
+        int x = x1;
+        int y = y1;
+
+        while(1)
+        {
+            canvas[y][x] = '*';
+
+            if(x == x2 && y == y2)
+                break;
+
+            x += dx;
+            y += dy;
+        }
+    }
+}
